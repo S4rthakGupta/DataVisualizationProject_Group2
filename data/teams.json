@@ -1,0 +1,7 @@
+[
+    { "team": "Brazil", "goals": 10, "matches": 5, "wins": 4, "rank": 1, "country": "Brazil" },
+    { "team": "Argentina", "goals": 8, "matches": 5, "wins": 3, "rank": 2, "country": "Argentina" },
+    { "team": "France", "goals": 7, "matches": 5, "wins": 3, "rank": 3, "country": "France" },
+    { "team": "Germany", "goals": 5, "matches": 5, "wins": 2, "rank": 4, "country": "Germany" }
+  ]
+  

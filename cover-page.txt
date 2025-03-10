@@ -1,0 +1,10 @@
+Cover Page
+
+Project Title: Interactive Soccer Data Visualization with D3.js
+Course Number: 
+Group Members:
+1. Sarthak Gupta
+2. Dilpreet Kaur Dhanjal
+3. Shakila Samardiwakara
+
+Date: March 10, 2025
