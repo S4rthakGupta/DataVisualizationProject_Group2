@@ -2,6 +2,12 @@
     { "team": "Brazil", "goals": 10, "matches": 5, "wins": 4, "rank": 1, "country": "Brazil" },
     { "team": "Argentina", "goals": 8, "matches": 5, "wins": 3, "rank": 2, "country": "Argentina" },
     { "team": "France", "goals": 7, "matches": 5, "wins": 3, "rank": 3, "country": "France" },
-    { "team": "Germany", "goals": 5, "matches": 5, "wins": 2, "rank": 4, "country": "Germany" }
+    { "team": "Germany", "goals": 5, "matches": 5, "wins": 2, "rank": 4, "country": "Germany" },
+    { "team": "Spain", "goals": 6, "matches": 5, "wins": 3, "rank": 5, "country": "Spain" },
+    { "team": "Italy", "goals": 4, "matches": 5, "wins": 1, "rank": 6, "country": "Italy" },
+    { "team": "Portugal", "goals": 7, "matches": 5, "wins": 3, "rank": 7, "country": "Portugal" },
+    { "team": "England", "goals": 5, "matches": 5, "wins": 2, "rank": 8, "country": "England" },
+    { "team": "Belgium", "goals": 3, "matches": 5, "wins": 1, "rank": 9, "country": "Belgium" },
+    { "team": "Netherlands", "goals": 4, "matches": 5, "wins": 2, "rank": 10, "country": "Netherlands" }
   ]
   
