@@ -5,49 +5,152 @@
   <title>Data Visualization Project Group 2</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
     <h1>Soccer Data Visualizations with D3.js</h1>
+    <p>Group 2: Sarthak, Dilpreet, Shakila</p>
+    <p><strong>SUBMITTED TO: Ali El Hajar</strong></p>
+    <hr>
     <nav>
-      <a href="#barChart">Goals (Bar Chart)</a>
-      <a href="#pieChart">Wins (Pie Chart)</a>
-      <a href="#lineChart">Goals Over Matches (Line)</a>
-      <a href="#scatterPlot">Wins vs Goals (Scatter)</a>
-      <a href="#circlePacking">Ranking (Circle Pack)</a>
-      <a href="#choroplethMap">Wins by Country (Map)</a>
-      <a href="#histogram">Goals Histogram</a> <!-- NEW MENU ITEM -->
+      <a href="#bubbleMap">Wins by Country</a>
+      <a href="#histogram">Goals Histogram </a>
+      <a href="#winsPieChart">Wins Pie Chart</a>
+      <a href="#scatterPlot">Goals vs Wins Scatter Plot</a>
+      <a href="#lineChart">Goals Over Years</a>
     </nav>
   </header>
 
   <main>
-    <section id="barChart"><h2>Goals by Team</h2></section>
-    <section id="pieChart"><h2>Wins Proportion</h2></section>
-    <section id="lineChart"><h2>Goals Over Matches</h2></section>
-    <section id="scatterPlot"><h2>Wins vs Goals</h2></section>
-    <section id="circlePacking"><h2>Team Rankings</h2></section>
-    <section id="choroplethMap"><h2>Wins by Country Map</h2></section>
-    <section id="histogram">
-      <h2>Goals Histogram</h2>
-      <div class="controls">
-        <label for="yearSelect">Select Year: </label>
-        <select id="yearSelect">
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
-        </select>
-      </div>
-      <div class="chart-container">
-        <svg id="histogramChart" width="800" height="400"></svg>
-      </div>
-    </section>
-  </main>
 
-  <script src="js/barChart.js"></script>
-  <script src="js/pieChart.js"></script>
-  <script src="js/lineChart.js"></script>
-  <script src="js/scatterPlot.js"></script>
-  <script src="js/circlePacking.js"></script>
-  <script src="js/choroplethMap.js"></script>
-  <script src="js/histogram.js"></script> <!-- NEW SCRIPT -->
+    <!-- Bubble Map Section -->
+  <section id="bubbleMap">
+    <h2>Wins by Country (Bubble Map)</h2>
+    <div class="chart-container">
+      <svg id="winsBubbleMap" width="900" height="500"></svg>
+    </div>
+  </section>
+
+  <!-- Histogram Section -->
+  <section id="histogram">
+    <h2>Goals Histogram (Bar Graph)</h2>
+    <div class="controls">
+      <label for="yearSelect">Select Year: </label>
+      <select id="yearSelect">
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+      </select>
+    </div>
+    <div class="chart-container">
+      <svg id="histogramChart" width="800" height="400"></svg>
+    </div>
+  </section>
+  
+  <section id="winsPieChart">
+    <h2>Wins Distribution (Pie Chart)</h2>
+    <div class="chart-container">
+      <canvas id="winsPieCanvas" width="400" height="400"></canvas>
+    </div>
+  </section>
+
+  <section id="scatterPlot">
+  <h2>Goals vs Wins (Team Performance)</h2>
+  <div class="chart-container">
+    <svg id="scatterChart" width="800" height="400"></svg>
+  </div>
+  </section>
+
+<section id="lineChart">
+  <h2>Goals Over Years (Trend)</h2>
+  <div class="chart-container">
+    <svg id="goalsLineChart" width="800" height="400"></svg>
+  </div>
+</section>
+
+</main>
+
+<!-- Scripts -->
+<script src="js/bubbleMap.js"></script>
+<script src="js/histogram.js"></script>
+<script src="js/winsPieChart.js"></script>
+<script src="js/scatterPlot.js"></script>
+<script>
+  (() => {
+      const data = [
+          { year: 2020, goals: 55 }, { year: 2021, goals: 60 }, { year: 2022, goals: 68 }, { year: 2023, goals: 72 }
+      ];
+  
+      const svg = d3.select("#goalsLineChart"),
+          margin = { top: 40, right: 30, bottom: 60, left: 60 },
+          width = +svg.attr("width") - margin.left - margin.right,
+          height = +svg.attr("height") - margin.top - margin.bottom;
+  
+      const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+  
+      const x = d3.scaleLinear().domain([2020, 2023]).range([0, width]);
+      const y = d3.scaleLinear().domain([0, 80]).range([height, 0]);
+  
+      // X Axis
+      g.append("g")
+          .attr("transform", `translate(0,${height})`)
+          .call(d3.axisBottom(x).ticks(4).tickFormat(d3.format("d")));
+  
+      // Y Axis
+      g.append("g").call(d3.axisLeft(y));
+  
+      // Line Path
+      const line = d3.line().x(d => x(d.year)).y(d => y(d.goals)).curve(d3.curveMonotoneX); // Smooth line
+  
+      g.append("path")
+          .datum(data)
+          .attr("fill", "none")
+          .attr("stroke", "#0077cc")
+          .attr("stroke-width", 3)
+          .attr("d", line);
+  
+      // Data points (circles)
+      g.selectAll("circle")
+          .data(data)
+          .enter().append("circle")
+          .attr("cx", d => x(d.year))
+          .attr("cy", d => y(d.goals))
+          .attr("r", 6)
+          .attr("fill", "#ff5733");
+  
+      // Labels for each point
+      g.selectAll("text.label")
+          .data(data)
+          .enter().append("text")
+          .attr("x", d => x(d.year))
+          .attr("y", d => y(d.goals) - 10)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "12px")
+          .attr("fill", "#333")
+          .text(d => d.goals);
+  
+      // Axis Labels
+      svg.append("text")
+          .attr("x", width / 2 + margin.left)
+          .attr("y", height + margin.top + 50)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "14px")
+          .attr("font-weight", "bold")
+          .text("Year");
+  
+      svg.append("text")
+          .attr("x", -(height / 2) - margin.top)
+          .attr("y", 20)
+          .attr("transform", "rotate(-90)")
+          .attr("text-anchor", "middle")
+          .attr("font-size", "14px")
+          .attr("font-weight", "bold")
+          .text("Goals Scored");
+  })();
+  </script>
+  
+
 </body>
 </html>

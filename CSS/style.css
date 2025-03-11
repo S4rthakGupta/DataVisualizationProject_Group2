@@ -1,7 +1,12 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
+  font-family: monospace, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f2f5;
+  color: #333;
 }
+
+
 header {
   background: #333;
   color: white;
@@ -9,10 +14,17 @@ header {
   text-align: center;
 }
 nav a {
-  margin: 0 15px;
-  color: white;
+  margin: 0 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
   text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
 }
+nav a:hover {
+  color: #e65b24;
+}
+
 section {
   margin: 20px auto;
   width: 90%;
@@ -28,42 +40,36 @@ svg {
   margin: auto;
 }
 
-.tooltip {
-  position: absolute;
-  text-align: center;
-  padding: 6px;
-  font: 12px sans-serif;
-  background: white;
-  border: 1px solid black;
-  border-radius: 4px;
-  pointer-events: none;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-}
-
-.chart-container {
-  max-width: 800px;
-  margin: 20px auto;
-  background: #fff;
-  padding: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
 .controls {
   text-align: center;
-  margin-bottom: 10px;
+  margin: 20px;
 }
 
 select {
-  padding: 5px 10px;
-  font-size: 14px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #0077cc;
+  border-radius: 5px;
+  outline: none;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+select:hover {
+  border-color: #005fa3;
+}
+
+.chart-container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 10px;
 }
 
 .bar {
-  fill: steelblue;
-}
-
-.bar:hover {
-  fill: darkorange;
+  fill: url(#barGradient);
 }
 
 .axis path,
@@ -73,4 +79,11 @@ select {
 
 h2 {
   text-align: center;
+  margin-bottom: 10px;
+}
+
+.arc text {
+  font-family: sans-serif;
+  font-weight: bold;
+  pointer-events: none; /* Prevent overlap with hover */
 }
