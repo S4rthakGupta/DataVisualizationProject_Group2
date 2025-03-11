@@ -16,6 +16,7 @@
       <a href="#scatterPlot">Wins vs Goals (Scatter)</a>
       <a href="#circlePacking">Ranking (Circle Pack)</a>
       <a href="#choroplethMap">Wins by Country (Map)</a>
+      <a href="#histogram">Goals Histogram</a> <!-- NEW MENU ITEM -->
     </nav>
   </header>
 
@@ -26,6 +27,19 @@
     <section id="scatterPlot"><h2>Wins vs Goals</h2></section>
     <section id="circlePacking"><h2>Team Rankings</h2></section>
     <section id="choroplethMap"><h2>Wins by Country Map</h2></section>
+    <section id="histogram">
+      <h2>Goals Histogram</h2>
+      <div class="controls">
+        <label for="yearSelect">Select Year: </label>
+        <select id="yearSelect">
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+        </select>
+      </div>
+      <div class="chart-container">
+        <svg id="histogramChart" width="800" height="400"></svg>
+      </div>
+    </section>
   </main>
 
   <script src="js/barChart.js"></script>
@@ -34,5 +48,6 @@
   <script src="js/scatterPlot.js"></script>
   <script src="js/circlePacking.js"></script>
   <script src="js/choroplethMap.js"></script>
+  <script src="js/histogram.js"></script> <!-- NEW SCRIPT -->
 </body>
 </html>
